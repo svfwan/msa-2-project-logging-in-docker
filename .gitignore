@@ -26,6 +26,8 @@ Thumbs.db
 *.log
 .env
 
-# Corporate files (not for public repo)
+# Local/private files (not for public repo)
+*.local.*
+*.local
 app/Dockerfile.corporate
 app/pyproject.toml.corporate

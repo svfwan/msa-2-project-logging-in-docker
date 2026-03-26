@@ -87,3 +87,23 @@ curl localhost:3100/ready  # check loki health
 ## Note: Rancher Desktop
 
 This project uses Docker's socket API (`docker_sd_configs`) instead of scraping log files from `/var/lib/docker/containers`. This is necessary because Rancher Desktop (and Docker Desktop) run containers inside a VM, making the log files inaccessible from the host. The socket API approach works universally regardless of how Docker is installed.
+
+## References
+
+### Docker Socket API
+- **Docker Daemon Socket**: `/var/run/docker.sock` is the default Unix socket for Docker daemon communication  
+  https://docs.docker.com/reference/cli/dockerd/#daemon-socket-option
+
+### Promtail Configuration
+- **Docker Service Discovery**: How `docker_sd_configs` discovers containers via Docker API  
+  https://grafana.com/docs/loki/latest/send-data/promtail/scraping/#docker-service-discovery
+- **Configuration Reference**: Full `docker_sd_configs` options and `__meta_docker_*` labels  
+  https://grafana.com/docs/loki/latest/send-data/promtail/configuration/#docker_sd_configs
+- **Pipeline Stages**: JSON parsing and label extraction stages  
+  https://grafana.com/docs/loki/latest/send-data/promtail/pipelines/
+
+### Why Socket API Instead of File Scraping
+- **Rancher Desktop Architecture**: Documents that containers run inside a VM on macOS/Linux  
+  https://docs.rancherdesktop.io/references/architecture
+- **Docker Desktop VM**: Explains why `/var/lib/docker` is inside VM, not accessible from host  
+  https://stackoverflow.com/questions/60408574/how-to-access-var-lib-docker-in-windows-10-docker-desktop
