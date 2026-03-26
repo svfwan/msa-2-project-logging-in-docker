@@ -1,4 +1,4 @@
-.PHONY: help up down down-v restart logs logs-app logs-loki logs-promtail ps test build clean
+.PHONY: help up down down-v restart logs logs-app logs-loki logs-promtail logs-grafana ps test build clean status
 
 # Default target
 .DEFAULT_GOAL := help

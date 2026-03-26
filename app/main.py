@@ -1,7 +1,6 @@
 import json
-import sys
 from datetime import datetime, timezone
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 
 app = FastAPI(title="Logging Demo API")
 
@@ -17,14 +16,14 @@ def log(event: str, **kwargs) -> None:
 
 
 @app.get("/")
-def root(request: Request):
+def root():
     """Root endpoint - logs access event."""
     log("homepage_accessed", path="/", method="GET")
     return {"message": "Welcome to the Logging Demo API"}
 
 
 @app.get("/hello/{name}")
-def hello(name: str, request: Request):
+def hello(name: str):
     """Greeting endpoint - logs greeting event with name."""
     log("greeting", path=f"/hello/{name}", method="GET", name=name)
     return {"message": f"Hello, {name}!"}
