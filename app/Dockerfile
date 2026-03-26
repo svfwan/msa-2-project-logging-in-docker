@@ -1,21 +1,15 @@
-FROM python:3.12-slim
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
 
 WORKDIR /app
 
-# Install uv
-RUN pip install uv
-
-# Copy dependency files
 COPY pyproject.toml .
-
-# Install dependencies
-RUN uv sync --no-dev
-
-# Copy application code
 COPY main.py .
 
-# Expose port
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --no-dev --no-install-project
+
+ENV PATH="/app/.venv/bin:$PATH"
+
 EXPOSE 8000
 
-# Run the application
-CMD ["uv", "run", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
