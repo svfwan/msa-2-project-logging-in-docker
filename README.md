@@ -1,5 +1,7 @@
 # Docker Logging with PLG Stack
 
+**Completed by:** Safwan Zullash (se24m037) and Ines Petrusic (se24m013)
+
 MSA-2 Project: Centralized logging for Docker containers using Promtail, Loki, and Grafana.
 
 ## Architecture
