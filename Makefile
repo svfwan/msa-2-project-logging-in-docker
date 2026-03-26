@@ -4,10 +4,10 @@
 .DEFAULT_GOAL := help
 
 # Colors for help output
-CYAN := \033[36m
-GREEN := \033[32m
-YELLOW := \033[33m
-RESET := \033[0m
+CYAN := $(shell printf '\033[36m')
+GREEN := $(shell printf '\033[32m')
+YELLOW := $(shell printf '\033[33m')
+RESET := $(shell printf '\033[0m')
 
 help: ## Show this help message
 	@echo ""
