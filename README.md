@@ -86,7 +86,9 @@ curl localhost:3100/ready  # check loki health
 
 ## References
 
-### Docker Socket API
+### Docker Logging
+- **Docker Logging Drivers**: How Docker captures container stdout/stderr with `json-file` driver  
+  https://docs.docker.com/engine/logging/configure/
 - **Docker Daemon Socket**: `/var/run/docker.sock` is the default Unix socket for Docker daemon communication  
   https://docs.docker.com/reference/cli/dockerd/#daemon-socket-option
 
@@ -106,3 +108,7 @@ This project uses Docker's socket API (`docker_sd_configs`) instead of scraping 
   https://docs.rancherdesktop.io/references/architecture
 - **Docker Desktop VM**: Explains why `/var/lib/docker` is inside VM, not accessible from host  
   https://stackoverflow.com/questions/60408574/how-to-access-var-lib-docker-in-windows-10-docker-desktop
+
+### Course Resources
+- **PLG Stack Tutorial**: Example Promtail-Loki-Grafana setup (uses file scraping approach)  
+  https://medium.com/django-unleashed/get-visibility-into-your-docker-container-logs-with-grafana-loki-of-a-django-application-9584bddfe540
