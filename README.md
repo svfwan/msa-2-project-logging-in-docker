@@ -84,10 +84,6 @@ make logs-app        # check app logs
 curl localhost:3100/ready  # check loki health
 ```
 
-## Note: Rancher Desktop
-
-This project uses Docker's socket API (`docker_sd_configs`) instead of scraping log files from `/var/lib/docker/containers`. This is necessary because Rancher Desktop (and Docker Desktop) run containers inside a VM, making the log files inaccessible from the host. The socket API approach works universally regardless of how Docker is installed.
-
 ## References
 
 ### Docker Socket API
@@ -103,6 +99,9 @@ This project uses Docker's socket API (`docker_sd_configs`) instead of scraping 
   https://grafana.com/docs/loki/latest/send-data/promtail/pipelines/
 
 ### Why Socket API Instead of File Scraping
+
+This project uses Docker's socket API (`docker_sd_configs`) instead of scraping log files from `/var/lib/docker/containers`. This is necessary because Rancher Desktop (and Docker Desktop) run containers inside a VM, making the log files inaccessible from the host.
+
 - **Rancher Desktop Architecture**: Documents that containers run inside a VM on macOS/Linux  
   https://docs.rancherdesktop.io/references/architecture
 - **Docker Desktop VM**: Explains why `/var/lib/docker` is inside VM, not accessible from host  
