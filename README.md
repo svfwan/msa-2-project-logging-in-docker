@@ -25,6 +25,8 @@ sequenceDiagram
     Grafana->>Loki: LogQL query
 ```
 
+The app writes structured JSON logs to stdout. Docker captures all container stdout/stderr automatically. Promtail discovers running containers via Docker's socket API and reads their logs. It then pushes these logs to Loki, which indexes them by labels (container name, service, etc.) for fast querying. Grafana provides a web UI to query and explore the logs using LogQL.
+
 ## Quick Start
 
 ```bash
@@ -81,3 +83,7 @@ make logs-promtail   # check promtail logs
 make logs-app        # check app logs
 curl localhost:3100/ready  # check loki health
 ```
+
+## Note: Rancher Desktop
+
+This project uses Docker's socket API (`docker_sd_configs`) instead of scraping log files from `/var/lib/docker/containers`. This is necessary because Rancher Desktop (and Docker Desktop) run containers inside a VM, making the log files inaccessible from the host. The socket API approach works universally regardless of how Docker is installed.
